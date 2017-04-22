@@ -15,21 +15,53 @@ public protocol LEDVCDelegate {
 }
 
 class LEDViewController: UIViewController {
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var slider2: UISlider!
-    @IBOutlet weak var slider3: UISlider!
 
     var serial: BluetoothSerial!
     var delegate: LEDVCDelegate!
-    
+
+    let minValue1 = 0.0
+    let maxValue1 = 255.0
+    let defaultValue1 = 0.0
+
+    let minValue2 = 256
+    let defaultValue2 = 256
+    let maxValue2 = 511
+
+    let minValue3 = 512
+    let defaultValue3 = 512
+    let maxValue3 = 767
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.slider.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
-        self.slider2.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
-        self.slider3.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
 
-//        self.slider.transform = CGAffineTransform.init().rotated(by: -45)
-//        self.slider.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
+
+        let sliderView = SliderView(frame: CGRect())
+        view.addSubview(sliderView)
+
+        sliderView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view).offset(0)
+            make.right.equalTo(view).offset(0)
+            make.center.equalToSuperview()
+            make.height.equalTo(sliderView.snp.width)
+        }
+
+        for slider in sliderView.sliderArray {
+            slider.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
+        }
+
+        sliderView.slider.maximumValue = Float(maxValue1)
+        sliderView.slider.value = Float(defaultValue1)
+        sliderView.slider.minimumValue = Float(minValue1)
+
+        sliderView.slider2.maximumValue = Float(maxValue2)
+        sliderView.slider2.value = Float(defaultValue2)
+        sliderView.slider2.minimumValue = Float(minValue2)
+
+        sliderView.slider3.maximumValue = Float(maxValue3)
+        sliderView.slider3.value = Float(defaultValue3)
+        sliderView.slider3.minimumValue = Float(minValue3)
+
     }
     
     func onLuminosityChange(sender: UISlider){

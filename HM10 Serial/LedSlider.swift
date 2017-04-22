@@ -1,21 +1,25 @@
 //
-//  LedSlider.swift
+//  LEDSlider.swift
 //  HM10 Serial
 //
-//  Created by Alexander Wald on 15/04/17.
+//  Created by Alexander Wald on 17/04/17.
 //  Copyright © 2017 Balancing Rock. All rights reserved.
 //
 
 import UIKit
 
-class LedSlider: UISlider {
+class LEDSlider: UISlider {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.cornerRadius = 20
+        self.clipsToBounds = true
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+        thumbTintColor = UIColor.hexStringToUIColor(hex: "FEC709")
+        maximumTrackTintColor = UIColor.black
+        minimumTrackTintColor = UIColor.black
+        backgroundColor = UIColor.black
     }
-    */
-
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
