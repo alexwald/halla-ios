@@ -10,12 +10,13 @@ import UIKit
 
 class CenterView: UIView {
 
-    var graphicLayer = CALayer()
+//    var graphicLayer = CALayer()
+    var shapeLayer = CAShapeLayer()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
-        //        contentMode = UIViewContentMode.redraw
+                contentMode = UIViewContentMode.redraw
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -26,19 +27,18 @@ class CenterView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        if let _ = graphicLayer.superlayer {
-            graphicLayer.removeFromSuperlayer()
-        }
+//        if let _ = graphicLayer.superlayer {
+//            graphicLayer.removeFromSuperlayer()
+//        }
 
-        graphicLayer = CALayer()
+//        graphicLayer = CALayer()
         createSublayers()
-        layer.addSublayer(graphicLayer)
+//        layer.addSublayer(graphicLayer)
     }
 
     func createSublayers() {
         //// Color Declarations
         let fillColor2 = UIColor(red: 0.079, green: 0.079, blue: 0.079, alpha: 1.000)
-
 
         let iconFrame = CGRect(x: 0, y: 0, width: 30, height: 30)
 
@@ -47,7 +47,7 @@ class CenterView: UIView {
         //        let w = iconFrame.width
         //        let h = iconFrame.height
 
-        let shapeLayer = CAShapeLayer()
+        let _shapeLayer = CAShapeLayer()
 
         let bezier3Path = UIBezierPath()
         bezier3Path.move(to: CGPoint(x: x - 0.28, y: y + 17.62))
@@ -65,11 +65,24 @@ class CenterView: UIView {
         bezier3Path.addLine(to: CGPoint(x: x - 0.28, y: y + 17.62))
         bezier3Path.close()
         bezier3Path.usesEvenOddFillRule = true
-        fillColor2.setFill()
+//        fillColor2.setFill()
         bezier3Path.fill()
 
-        shapeLayer.path = bezier3Path.cgPath
-        self.graphicLayer.addSublayer(shapeLayer)
+        _shapeLayer.path = bezier3Path.cgPath
+        shapeLayer = _shapeLayer
+
+//        shapeLayer.bounds = cgpathgetBound
+
+//        shapeLayer.bounds = shapeLayer.path!.boundingBox // IMPORTANT, without this hitTest wont work
+
+//        shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
+
+
+//        self.graphicLayer.addSublayer(shapeLayer)
+//        self.addsub
+        self.layer.addSublayer(shapeLayer)
+
+
         self.backgroundColor = UIColor.clear
     }
 

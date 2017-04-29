@@ -73,7 +73,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate, Bluetoo
         //
         if segue.identifier == "goToLED" {
             let dest = segue.destination as! LEDViewController
-            dest.serial = serial
+//            dest.serial = serial
             dest.delegate = self
         }
     }
@@ -118,12 +118,12 @@ final class SerialViewController: UIViewController, UITextFieldDelegate, Bluetoo
             barButton.tintColor = UIColor.red
             barButton.isEnabled = true
         } else if serial.centralManager.state == .poweredOn {
-            navItem.title = "Bluetooth Serial"
+            navItem.title = "Halla 360+"
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = true
         } else {
-            navItem.title = "Bluetooth Serial"
+            navItem.title = "Halla 360+"
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = false
@@ -134,7 +134,6 @@ final class SerialViewController: UIViewController, UITextFieldDelegate, Bluetoo
         let range = NSMakeRange(NSString(string: mainTextView.text).length - 1, 1)
         mainTextView.scrollRangeToVisible(range)
     }
-    
 
 //MARK: BluetoothSerialDelegate
     

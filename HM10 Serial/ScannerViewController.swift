@@ -47,7 +47,7 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
             title = "Bluetooth not turned on"
             return
         }
-        
+
         // start scanning and schedule the time out
         serial.startScan()
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.scanTimeOut), userInfo: nil, repeats: false)

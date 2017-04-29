@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
-               BuildableName = "Serial.app"
-               BlueprintName = "Serial"
-               ReferencedContainer = "container:HM10 Serial.xcodeproj">
+               BlueprintIdentifier = "CDD68173BE8A6345C66FE503B733B404"
+               BuildableName = "Pods_Serial.framework"
+               BlueprintName = "Pods-Serial"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA5AB9791B77A30F007443C8"
-               BuildableName = "HM10 SerialTests.xctest"
-               BlueprintName = "HM10 SerialTests"
-               ReferencedContainer = "container:HM10 Serial.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
-            BuildableName = "Serial.app"
-            BlueprintName = "Serial"
-            ReferencedContainer = "container:HM10 Serial.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,23 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
-            BuildableName = "Serial.app"
-            BlueprintName = "Serial"
-            ReferencedContainer = "container:HM10 Serial.xcodeproj">
+            BlueprintIdentifier = "CDD68173BE8A6345C66FE503B733B404"
+            BuildableName = "Pods_Serial.framework"
+            BlueprintName = "Pods-Serial"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "CG_CONTEXT_SHOW_BACKTRACE"
-            value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -87,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
-            BuildableName = "Serial.app"
-            BlueprintName = "Serial"
-            ReferencedContainer = "container:HM10 Serial.xcodeproj">
+            BlueprintIdentifier = "CDD68173BE8A6345C66FE503B733B404"
+            BuildableName = "Pods_Serial.framework"
+            BlueprintName = "Pods-Serial"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
