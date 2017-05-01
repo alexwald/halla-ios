@@ -14,18 +14,18 @@
         <!--Scanning ...-->
         <scene sceneID="TIE-39-MG2">
             <objects>
-                <viewController id="33X-Xk-e4d" customClass="ScannerViewController" customModule="Serial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="33X-Xk-e4d" customClass="ScannerViewController" customModule="Serial" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pua-UU-5uR"/>
                         <viewControllerLayoutGuide type="bottom" id="LU7-hj-xrB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m6n-mb-AsH">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="m6n-mb-AsH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Plv-MK-Pj9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="AbS-y9-kPq">
                                         <rect key="frame" x="0.0" y="22" width="375" height="44"/>
@@ -68,13 +68,19 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LU7-hj-xrB" firstAttribute="top" secondItem="Plv-MK-Pj9" secondAttribute="bottom" id="3AF-Qg-8Vd"/>
                             <constraint firstAttribute="centerY" secondItem="Plv-MK-Pj9" secondAttribute="centerY" id="TK2-5g-q9f"/>
-                            <constraint firstItem="Plv-MK-Pj9" firstAttribute="height" secondItem="m6n-mb-AsH" secondAttribute="height" id="TwA-yA-i5i"/>
                             <constraint firstItem="Plv-MK-Pj9" firstAttribute="centerX" secondItem="m6n-mb-AsH" secondAttribute="centerX" id="eqz-Zh-giH"/>
                             <constraint firstItem="Plv-MK-Pj9" firstAttribute="width" secondItem="m6n-mb-AsH" secondAttribute="width" id="hJP-h7-QM6"/>
+                            <constraint firstItem="Plv-MK-Pj9" firstAttribute="top" secondItem="pua-UU-5uR" secondAttribute="bottom" id="yFc-KN-B0n"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TK2-5g-q9f"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Scanning ..." id="eda-Ke-DJ0">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="x06-gA-foi">
@@ -343,7 +349,7 @@
                     <connections>
                         <outlet property="barButton" destination="bWP-82-EL5" id="42p-dc-xdJ"/>
                         <outlet property="navItem" destination="GZV-TJ-nGT" id="Qmg-Hq-fbY"/>
-                        <segue destination="HTb-Lt-944" kind="presentation" identifier="ShowScanner" modalPresentationStyle="formSheet" id="yoZ-Jb-iyL"/>
+                        <segue destination="HTb-Lt-944" kind="presentation" identifier="ShowScanner" modalPresentationStyle="overCurrentContext" id="yoZ-Jb-iyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9v-nS-lTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,7 +377,7 @@
         <!--Navigation Controller-->
         <scene sceneID="l5Z-t8-MYl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HTb-Lt-944" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="HTb-Lt-944" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EFM-C7-8Ti">
@@ -407,6 +413,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MXp-F6-2KD"/>
+        <segue reference="yoZ-Jb-iyL"/>
     </inferredMetricsTieBreakers>
 </document>

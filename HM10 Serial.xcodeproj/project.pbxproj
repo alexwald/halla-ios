@@ -23,6 +23,7 @@
 		FA9174481EA536B300DD354E /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9174471EA536B300DD354E /* UIColor+Hex.swift */; };
 		FA91744A1EA536E500DD354E /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9174491EA536E500DD354E /* SliderView.swift */; };
 		FA91744C1EA539B400DD354E /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91744B1EA539B400DD354E /* CenterView.swift */; };
+		FAF206531EB7961E002C229C /* UINavigationController+transparentNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		FA9174471EA536B300DD354E /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		FA9174491EA536E500DD354E /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		FA91744B1EA539B400DD354E /* CenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterView.swift; sourceTree = "<group>"; };
+		FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+transparentNavBar.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				FA9174491EA536E500DD354E /* SliderView.swift */,
 				FA9174471EA536B300DD354E /* UIColor+Hex.swift */,
 				FA91744B1EA539B400DD354E /* CenterView.swift */,
+				FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				7741742D1E9A423600E2AAC0 /* LEDViewController.swift in Sources */,
 				FA62F58D1B8B85B3000479B6 /* MBProgressHUD.m in Sources */,
 				FA9174481EA536B300DD354E /* UIColor+Hex.swift in Sources */,
+				FAF206531EB7961E002C229C /* UINavigationController+transparentNavBar.swift in Sources */,
 				FA91744A1EA536E500DD354E /* SliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

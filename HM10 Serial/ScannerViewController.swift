@@ -33,7 +33,20 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+
+
+
+        self.view.backgroundColor       = UIColor.clear
+        let effect                      = UIBlurEffect(style: .light)
+        let blurView                    = UIVisualEffectView(effect: effect)
+        blurView.frame                  = self.view.bounds
+        self.view.addSubview(blurView)
+        self.view.sendSubview(toBack: blurView)
+
+                automaticallyAdjustsScrollViewInsets = true
+                self.tableView.contentInset = UIEdgeInsets.zero
+
         // tryAgainButton is only enabled when we've stopped scanning
         tryAgainButton.isEnabled = false
 

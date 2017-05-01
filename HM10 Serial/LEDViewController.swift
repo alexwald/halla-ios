@@ -37,6 +37,10 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
 
         // init serial
@@ -104,12 +108,12 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             barButton.tintColor = UIColor.red
             barButton.isEnabled = true
         } else if serial.centralManager.state == .poweredOn {
-            navItem.title = "Halla 360+"
+            navItem.title = ""
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = true
         } else {
-            navItem.title = "Halla 360+"
+            navItem.title = ""
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = false
