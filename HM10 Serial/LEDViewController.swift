@@ -18,6 +18,7 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var barButton: UIBarButtonItem!
+    @IBOutlet weak var turnOff: UIBarButtonItem!
 
 //    var serial: BluetoothSerial!
     var delegate: LEDVCDelegate!
@@ -33,6 +34,12 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     let minValue3 = 512
     let defaultValue3 = 512
     let maxValue3 = 767
+
+    let minValue4 = 768
+    let defaultValue4 = 768
+    let maxValue4 = 1023
+
+    let sliderView = SliderView(frame: CGRect())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +58,7 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
         NotificationCenter.default.addObserver(self, selector: #selector(SerialViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
 
-        let sliderView = SliderView(frame: CGRect())
+//        let sliderView = SliderView(frame: CGRect())
         view.addSubview(sliderView)
 
         sliderView.snp.makeConstraints { (make) -> Void in
@@ -77,6 +84,9 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         sliderView.slider3.value = Float(defaultValue3)
         sliderView.slider3.minimumValue = Float(minValue3)
 
+        sliderView.slider4.maximumValue = Float(maxValue4)
+        sliderView.slider4.value = Float(defaultValue4)
+        sliderView.slider4.minimumValue = Float(minValue4)
 
 //        let tapRec = UITapGestureRecognizer(target: self, action:#selector(userTappedCenterView))
 //        tapRec.numberOfTapsRequired = 1
@@ -158,10 +168,45 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
     }
 
-
-
-
     //MARK: IBActions
+
+    @IBAction func turnOffAll(sender: UIBarButtonItem) {
+
+        guard let _ = serial.connectedPeripheral else { return }
+
+        let defaults = UserDefaults.standard
+
+//        if let firstKey = defaults.integer(forKey: "storedValue1"), let secondKey = defaults.integer(forKey: "storedValue2"), let thirdKey = defaults.integer(forKey: "storedValue3"), let fourthKey = defaults.integer(forKey: "storedValue4") {
+//            // RESTORE VALUES
+//
+//            let firstValue = Int(firstKey)
+//
+//
+//
+//        } else {
+//
+//            print("storing values")
+//
+//            // reset LEDs on arduino
+//
+//            serial.sendMessageToDevice("\(String(minValue1))\n")
+//            serial.sendMessageToDevice("\(String(minValue2))\n")
+//            serial.sendMessageToDevice("\(String(minValue3))\n")
+//            serial.sendMessageToDevice("\(String(minValue4))\n")
+//
+//            // store to userDefaults
+//            defaults.set(Int(sliderView.slider.value), forKey: "storedValue1")
+//            defaults.set(Int(sliderView.slider2.value), forKey: "storedValue2")
+//            defaults.set(Int(sliderView.slider3.value), forKey: "storedValue3")
+//            defaults.set(Int(sliderView.slider4.value), forKey: "storedValue4")
+//
+//            // reset sliders
+//            sliderView.slider.setValue(0.0, animated: true)
+//            sliderView.slider2.setValue(0.0, animated: true)
+//            sliderView.slider3.setValue(0.0, animated: true)
+//            sliderView.slider4.setValue(0.0, animated: true)
+//        }
+    }
 
     @IBAction func dismiss(sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: nil)

@@ -34,8 +34,9 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
 
         self.view.backgroundColor       = UIColor.clear
         let effect                      = UIBlurEffect(style: .light)
@@ -64,6 +65,8 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         // start scanning and schedule the time out
         serial.startScan()
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.scanTimeOut), userInfo: nil, repeats: false)
+
+        tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,11 +109,21 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
 //MARK: UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return peripherals.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return peripherals.count
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -150,6 +163,10 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         // add to the array, next sort & reload
         let theRSSI = RSSI?.floatValue ?? 0.0
         peripherals.append(peripheral: peripheral, RSSI: theRSSI)
+//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
+//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
+//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
+
         peripherals.sort { $0.RSSI < $1.RSSI }
         tableView.reloadData()
     }
