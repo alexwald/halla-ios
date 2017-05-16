@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA5AB9791B77A30F007443C8"
-               BuildableName = "HM10 SerialTests.xctest"
-               BlueprintName = "HM10 SerialTests"
+               BuildableName = "Halla 360Tests.xctest"
+               BlueprintName = "Halla 360Tests"
                ReferencedContainer = "container:Halla 360.xcodeproj">
             </BuildableReference>
          </TestableReference>
