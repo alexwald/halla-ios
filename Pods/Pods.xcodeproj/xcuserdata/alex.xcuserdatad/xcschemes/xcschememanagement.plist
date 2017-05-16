@@ -4,19 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EasyTipView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Pods-Serial.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>051A621A95E09BFC564B42514DC73DC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B007C3F8FB1A17A147EFD4A19BC6452</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>90B4956B5DA8CFE54B547D232BF3136A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CDD68173BE8A6345C66FE503B733B404</key>
 		<dict>
 			<key>primary</key>

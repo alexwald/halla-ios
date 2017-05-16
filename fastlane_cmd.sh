@@ -1,0 +1,1 @@
+fastlane beta test_email:wald.alexander@gmail.com

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:HM10 Serial.xcodeproj">
+      location = "group:/Users/alex/Dropbox/halla/halla-ios/Halla 360.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

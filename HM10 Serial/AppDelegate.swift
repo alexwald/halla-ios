@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 let MessageOptionKey = "MessageOption"
 let ReceivedMessageOptionKey = "ReceivedMessageOption"
@@ -23,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register default user prefs
         UserDefaults.standard.register(defaults: [MessageOptionKey: MessageOption.noLineEnding.rawValue,
                                           ReceivedMessageOptionKey: ReceivedMessageOption.none.rawValue])
+        Fabric.with([Crashlytics.self])
         
         return true
     }
