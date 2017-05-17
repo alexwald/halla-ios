@@ -20,7 +20,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var turnOff: UIBarButtonItem!
 
-//    var serial: BluetoothSerial!
     var delegate: LEDVCDelegate!
 
     let minValue1 = 0.0
@@ -58,7 +57,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
         NotificationCenter.default.addObserver(self, selector: #selector(SerialViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
 
-//        let sliderView = SliderView(frame: CGRect())
         view.addSubview(sliderView)
 
         sliderView.snp.makeConstraints { (make) -> Void in
@@ -172,40 +170,73 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
     @IBAction func turnOffAll(sender: UIBarButtonItem) {
 
-        guard let _ = serial.connectedPeripheral else { return }
+//        guard let _ = serial.connectedPeripheral else { return }
 
         let defaults = UserDefaults.standard
+        
+        if let firstValue = defaults.object(forKey: "storedValue1") as? Int {
+            
+            // WE HAVE SOME STORED VALUES, let's restore
+            print("storing values")
+            
+            serial.sendMessageToDevice("\(String(firstValue))\n")
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sliderView.slider.setValue(Float(firstValue), animated: true)
+            })
+            defaults.removeObject(forKey: "storedValue1")
+            
+            if let secondValue = defaults.object(forKey: "storedValue2") as? Int {
+                serial.sendMessageToDevice("\(String(secondValue))\n")
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.sliderView.slider2.setValue(Float(secondValue), animated: true)
+                })
+                defaults.removeObject(forKey: "storedValue2")
+            }
+            
+            if let thirdValue = defaults.object(forKey: "storedValue3") as? Int {
+                serial.sendMessageToDevice("\(String(thirdValue))\n")
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.sliderView.slider3.setValue(Float(thirdValue), animated: true)
+                })
+                defaults.removeObject(forKey: "storedValue3")
+            }
+            
+            if let fourthValue = defaults.object(forKey: "storedValue4") as? Int {
+                serial.sendMessageToDevice("\(String(fourthValue))\n")
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.sliderView.slider4.setValue(Float(fourthValue), animated: true)
+                })
+                
+                defaults.removeObject(forKey: "storedValue4")
+            }
 
-//        if let firstKey = defaults.integer(forKey: "storedValue1"), let secondKey = defaults.integer(forKey: "storedValue2"), let thirdKey = defaults.integer(forKey: "storedValue3"), let fourthKey = defaults.integer(forKey: "storedValue4") {
-//            // RESTORE VALUES
-//
-//            let firstValue = Int(firstKey)
-//
-//
-//
-//        } else {
-//
-//            print("storing values")
-//
-//            // reset LEDs on arduino
-//
-//            serial.sendMessageToDevice("\(String(minValue1))\n")
-//            serial.sendMessageToDevice("\(String(minValue2))\n")
-//            serial.sendMessageToDevice("\(String(minValue3))\n")
-//            serial.sendMessageToDevice("\(String(minValue4))\n")
-//
-//            // store to userDefaults
-//            defaults.set(Int(sliderView.slider.value), forKey: "storedValue1")
-//            defaults.set(Int(sliderView.slider2.value), forKey: "storedValue2")
-//            defaults.set(Int(sliderView.slider3.value), forKey: "storedValue3")
-//            defaults.set(Int(sliderView.slider4.value), forKey: "storedValue4")
-//
-//            // reset sliders
-//            sliderView.slider.setValue(0.0, animated: true)
-//            sliderView.slider2.setValue(0.0, animated: true)
-//            sliderView.slider3.setValue(0.0, animated: true)
-//            sliderView.slider4.setValue(0.0, animated: true)
-//        }
+        } else {
+
+            print("storing values")
+
+            // reset LEDs on arduino
+
+            serial.sendMessageToDevice("\(String(minValue1))\n")
+            serial.sendMessageToDevice("\(String(minValue2))\n")
+            serial.sendMessageToDevice("\(String(minValue3))\n")
+            serial.sendMessageToDevice("\(String(minValue4))\n")
+
+            // store to userDefaults
+            defaults.set(Int(sliderView.slider.value), forKey: "storedValue1")
+            defaults.set(Int(sliderView.slider2.value), forKey: "storedValue2")
+            defaults.set(Int(sliderView.slider3.value), forKey: "storedValue3")
+            defaults.set(Int(sliderView.slider4.value), forKey: "storedValue4")
+
+            // reset sliders
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sliderView.slider.setValue(0.0, animated: true)
+                self.sliderView.slider2.setValue(0.0, animated: true)
+                self.sliderView.slider3.setValue(0.0, animated: true)
+                self.sliderView.slider4.setValue(0.0, animated: true)
+            })
+        }
     }
 
     @IBAction func dismiss(sender: UIButton) {

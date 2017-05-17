@@ -45,7 +45,7 @@
             BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
             BuildableName = "Serial.app"
             BlueprintName = "Serial"
-            ReferencedContainer = "container:HM10 Serial.xcodeproj">
+            ReferencedContainer = "container:Halla 360.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "FA5AB9641B77A30E007443C8"
             BuildableName = "Serial.app"
             BlueprintName = "Serial"
-            ReferencedContainer = "container:HM10 Serial.xcodeproj">
+            ReferencedContainer = "container:Halla 360.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

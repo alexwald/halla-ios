@@ -9,7 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
-
+  
 let MessageOptionKey = "MessageOption"
 let ReceivedMessageOptionKey = "ReceivedMessageOption"
 //let WriteWithResponseKey = "WriteWithResponse" No longer neccessary v1.1.2
