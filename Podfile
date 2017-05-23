@@ -11,5 +11,6 @@ target 'Serial' do
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'EasyTipView', '~> 1.0.2'
+pod 'Macaw'
 
 end

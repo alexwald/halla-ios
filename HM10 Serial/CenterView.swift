@@ -27,28 +27,25 @@ class CenterView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-//        if let _ = graphicLayer.superlayer {
-//            graphicLayer.removeFromSuperlayer()
-//        }
-
-//        graphicLayer = CALayer()
-        createSublayers()
-//        layer.addSublayer(graphicLayer)
     }
-
-    func createSublayers() {
+    
+    override func draw(_ rect: CGRect) {
+//        super.draw(rect)
+        
+        let context = UIGraphicsGetCurrentContext()!
+        
         //// Color Declarations
         let fillColor2 = UIColor(red: 0.079, green: 0.079, blue: 0.079, alpha: 1.000)
-
+        
         let iconFrame = CGRect(x: 0, y: 0, width: 30, height: 30)
-
+        
         let x = iconFrame.minX
         let y = iconFrame.minY
         //        let w = iconFrame.width
         //        let h = iconFrame.height
-
+        
         let _shapeLayer = CAShapeLayer()
-
+        
         let bezier3Path = UIBezierPath()
         bezier3Path.move(to: CGPoint(x: x - 0.28, y: y + 17.62))
         bezier3Path.addCurve(to: CGPoint(x: x + 8.42, y: y + 21.43), controlPoint1: CGPoint(x: x + 2.88, y: y + 17.75), controlPoint2: CGPoint(x: x + 6.01, y: y + 19.02))
@@ -65,26 +62,29 @@ class CenterView: UIView {
         bezier3Path.addLine(to: CGPoint(x: x - 0.28, y: y + 17.62))
         bezier3Path.close()
         bezier3Path.usesEvenOddFillRule = true
-//        fillColor2.setFill()
+        //        fillColor2.setFill()
         bezier3Path.fill()
-
+        
         _shapeLayer.path = bezier3Path.cgPath
         shapeLayer = _shapeLayer
-
-//        shapeLayer.bounds = cgpathgetBound
-
-//        shapeLayer.bounds = shapeLayer.path!.boundingBox // IMPORTANT, without this hitTest wont work
-
-//        shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
-
-
-//        self.graphicLayer.addSublayer(shapeLayer)
-//        self.addsub
+        
+        //        shapeLayer.bounds = cgpathgetBound
+        
+        //        shapeLayer.bounds = shapeLayer.path!.boundingBox // IMPORTANT, without this hitTest wont work
+        
+        //        shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
+        
+        
+        //        self.graphicLayer.addSublayer(shapeLayer)
+        //        self.addsub
         self.layer.addSublayer(shapeLayer)
-
-
+        
+        
         self.backgroundColor = UIColor.clear
+                context.saveGState()
+
     }
+
 
     override func draw(_ layer: CALayer, in ctx: CGContext) {
         super.draw(layer, in: ctx)

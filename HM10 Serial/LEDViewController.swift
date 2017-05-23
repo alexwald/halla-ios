@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 import CoreBluetooth
+import EasyTipView
 
 public protocol LEDVCDelegate {
     func ledVCDidFinish()
 }
 
-class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRecognizerDelegate {
+class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRecognizerDelegate, EasyTipViewDelegate {
 
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var barButton: UIBarButtonItem!
@@ -39,6 +40,11 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     let maxValue4 = 1023
 
     let sliderView = SliderView(frame: CGRect())
+    
+    var connectButton: ConnectivityIconButton!
+    var rotateButton: IconButton!
+    var shouldRotateBack: Bool = false
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +53,36 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
 
+        self.navigationController?.navigationBar.isHidden = true
+        
+        connectButton = ConnectivityIconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .addDevice)
+        rotateButton = IconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .rotateOff)
+        
+        
+        view.addSubview(connectButton)
+        
+        connectButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view).offset(10)
+            make.top.equalTo(view).offset(30)
+            make.width.equalTo(37)
+            make.height.equalTo(39)
+        }
+        
+        view.addSubview(rotateButton)
+        
+        connectButton.addTarget(self, action: #selector(barButtonPressed(_:)) , for: .touchUpInside)
+
+
+        rotateButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(view).offset(30)
+            make.width.equalTo(37)
+            make.height.equalTo(39)
+            make.right.equalTo(view).offset(-10)
+        }
+        
+        rotateButton.addTarget(self, action: #selector(rotate(sender:)) , for: .touchUpInside)
+
+        
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
 
         // init serial
@@ -90,7 +126,35 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 //        tapRec.numberOfTapsRequired = 1
 //        tapRec.delegate = self
 //        sliderView.addGestureRecognizer(tapRec)
+        
 
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor.black
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+
+        let defaults = UserDefaults.standard
+        if let _ = defaults.object(forKey: "tipDismissed") {
+            
+        } else {
+            EasyTipView.show(forView: self.sliderView.centerView,
+                             withinSuperview: self.view,
+                             text: "Tap the center view to turn the light off completely. Tap again to restore.",
+                             preferences: preferences,
+                             delegate: self)
+        }
+        
     }
 
 //    func userTappedCenterView(sender: UITapGestureRecognizer?) {
@@ -101,6 +165,12 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 //        return true
 //    }
 
+    func easyTipViewDidDismiss(_ tipView : EasyTipView) {
+        print("tip did dismiss")
+        let defaults = UserDefaults.standard
+        defaults.set(1, forKey: "tipDismissed")
+
+    }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -115,16 +185,23 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             barButton.title = "Disconnect"
             barButton.tintColor = UIColor.red
             barButton.isEnabled = true
+            connectButton.isEnabled = true
+            connectButton.isConnected = true
+
         } else if serial.centralManager.state == .poweredOn {
             navItem.title = ""
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = true
+            connectButton.isEnabled = true
+            connectButton.isConnected = false
         } else {
             navItem.title = ""
             barButton.title = "Connect"
             barButton.tintColor = view.tintColor
             barButton.isEnabled = false
+            connectButton.isEnabled = false
+            connectButton.isConnected = false
         }
     }
 
@@ -167,6 +244,27 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     }
 
     //MARK: IBActions
+    
+    @IBAction func rotate(sender: UIButton) {
+        var buttonTransform: CGAffineTransform! = .identity
+        var ledViewTransform: CGAffineTransform! = .identity
+
+        if shouldRotateBack {
+            
+        } else {
+            let degrees: CGFloat = 45.0 //the value in degrees
+            let radians: CGFloat = degrees * CGFloat(-M_PI/180)
+            buttonTransform = CGAffineTransform(rotationAngle: radians)
+            ledViewTransform = CGAffineTransform(rotationAngle: radians).concatenating(CGAffineTransform(scaleX: 0.7, y: 0.7))
+        }
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
+            self.rotateButton.transform = buttonTransform
+            self.sliderView.transform = ledViewTransform
+        }, completion: nil)
+        
+        shouldRotateBack = !shouldRotateBack
+    }
 
     @IBAction func turnOffAll(sender: UIBarButtonItem) {
 
