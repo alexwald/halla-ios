@@ -20,6 +20,8 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var turnOff: UIBarButtonItem!
+    @IBOutlet weak var versionLabel: UILabel!
+
 
     var delegate: LEDVCDelegate!
 
@@ -54,6 +56,10 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         self.navigationController?.navigationBar.isTranslucent = true
 
         self.navigationController?.navigationBar.isHidden = true
+
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            self.versionLabel.text = version
+        }
         
         connectButton = ConnectivityIconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .addDevice)
         rotateButton = IconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .rotateOff)
