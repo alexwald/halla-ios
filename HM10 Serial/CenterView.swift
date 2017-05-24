@@ -45,6 +45,8 @@ class CenterView: UIView {
         //        let h = iconFrame.height
         
         let _shapeLayer = CAShapeLayer()
+        _shapeLayer.contentsScale = UIScreen.main.scale
+
         
         let bezier3Path = UIBezierPath()
         bezier3Path.move(to: CGPoint(x: x - 0.28, y: y + 17.62))
@@ -67,6 +69,8 @@ class CenterView: UIView {
         
         _shapeLayer.path = bezier3Path.cgPath
         shapeLayer = _shapeLayer
+        
+//        shapeLayer.shouldRasterize = true
         
         //        shapeLayer.bounds = cgpathgetBound
         

@@ -24,6 +24,6 @@ class LEDSlider: UISlider {
     }
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 10, y: (bounds.size.height/2), width: bounds.size.width-20, height: 2)
+        return CGRect(x: 7, y: (bounds.size.height/2), width: bounds.size.width-14, height: 2)
     }
 }

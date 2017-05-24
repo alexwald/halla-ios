@@ -261,10 +261,10 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             let degrees: CGFloat = 45.0 //the value in degrees
             let radians: CGFloat = degrees * CGFloat(-M_PI/180)
             buttonTransform = CGAffineTransform(rotationAngle: radians)
-            ledViewTransform = CGAffineTransform(rotationAngle: radians).concatenating(CGAffineTransform(scaleX: 0.7, y: 0.7))
+            ledViewTransform = CGAffineTransform(rotationAngle: radians).concatenating(CGAffineTransform(scaleX: 0.8, y: 0.8))
         }
         
-        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 12, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
             self.rotateButton.transform = buttonTransform
             self.sliderView.transform = ledViewTransform
         }, completion: nil)
