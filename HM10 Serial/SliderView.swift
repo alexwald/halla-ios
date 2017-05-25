@@ -20,7 +20,7 @@ class SliderView: UIView, UIGestureRecognizerDelegate {
     let slider3 = LEDSlider(frame: CGRect())
     let slider4 = LEDSlider(frame: CGRect())
 
-    let centerView = CenterView(frame: CGRect())
+    var centerView = CenterView(frame: CGRect())
 
     let container1 = UIView(frame: CGRect())
     let container2 = UIView(frame: CGRect())
@@ -182,8 +182,6 @@ class SliderView: UIView, UIGestureRecognizerDelegate {
                         self.centerView.transform = .identity
                     }, completion: nil)
                 })
-
-                print("Hit shapeLayer") // Do something
             }
         }
     }

@@ -22,7 +22,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     @IBOutlet weak var turnOff: UIBarButtonItem!
     @IBOutlet weak var versionLabel: UILabel!
 
-
     var delegate: LEDVCDelegate!
 
     let minValue1 = 0.0
@@ -41,7 +40,7 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     let defaultValue4 = 768
     let maxValue4 = 1023
 
-    let sliderView = SliderView(frame: CGRect())
+    var sliderView = SliderView(frame: CGRect())
     
     var connectButton: ConnectivityIconButton!
     var rotateButton: IconButton!
@@ -78,7 +77,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         
         connectButton.addTarget(self, action: #selector(barButtonPressed(_:)) , for: .touchUpInside)
 
-
         rotateButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view).offset(30)
             make.width.equalTo(37)
@@ -88,7 +86,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         
         rotateButton.addTarget(self, action: #selector(rotate(sender:)) , for: .touchUpInside)
 
-        
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
 
         // init serial
@@ -97,40 +94,11 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         // UI
         reloadView()
 
-//        NotificationCenter.default.addObserver(self, selector: #selector(SerialViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.queryLedCount), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.instantiateViewBasedOnLedCount), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
 
-        view.addSubview(sliderView)
-        sliderView.delegate = self
-
-        sliderView.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(view).offset(0)
-            make.right.equalTo(view).offset(0)
-            make.center.equalToSuperview()
-            make.height.equalTo(sliderView.snp.width)
-        }
-
-        for slider in sliderView.sliderArray {
-            slider.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
-        }
-
-        sliderView.slider.maximumValue = Float(maxValue1)
-        sliderView.slider.value = Float(defaultValue1)
-        sliderView.slider.minimumValue = Float(minValue1)
-
-        sliderView.slider2.maximumValue = Float(maxValue2)
-        sliderView.slider2.value = Float(defaultValue2)
-        sliderView.slider2.minimumValue = Float(minValue2)
-
-        sliderView.slider3.maximumValue = Float(maxValue3)
-        sliderView.slider3.value = Float(defaultValue3)
-        sliderView.slider3.minimumValue = Float(minValue3)
-
-        sliderView.slider4.maximumValue = Float(maxValue4)
-        sliderView.slider4.value = Float(defaultValue4)
-        sliderView.slider4.minimumValue = Float(minValue4)
+        instantiateSliderView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -169,6 +137,8 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     }
 
     func reloadView() {
+
+
         // in case we're the visible view again
         serial.delegate = self
 
@@ -197,11 +167,57 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
     }
 
-    func queryLedCount() {
+    func instantiateViewBasedOnLedCount() {
+        print("reloading view with LED Count: \(serial.ledCount)")
+
+        sliderView.removeFromSuperview()
+
+        instantiateSliderView()
         reloadView()
     }
 
-    func onLuminosityChange(sender: UISlider){
+    func instantiateSliderView() {
+
+        if serial.ledCount == 2 {
+            sliderView = HalfSliderView(frame: CGRect())
+            rotateButton.isHidden = true
+        } else {
+            sliderView = SliderView(frame: CGRect())
+            rotateButton.isHidden = false
+        }
+
+        view.addSubview(sliderView)
+        sliderView.delegate = self
+
+        sliderView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view).offset(0)
+            make.right.equalTo(view).offset(0)
+            make.center.equalToSuperview()
+            make.height.equalTo(sliderView.snp.width)
+        }
+
+        for slider in sliderView.sliderArray {
+            slider.addTarget(self, action: #selector(self.onLuminosityChange), for: UIControlEvents.valueChanged)
+        }
+
+        sliderView.slider.maximumValue = Float(maxValue1)
+        sliderView.slider.value = Float(defaultValue1)
+        sliderView.slider.minimumValue = Float(minValue1)
+
+        sliderView.slider2.maximumValue = Float(maxValue2)
+        sliderView.slider2.value = Float(defaultValue2)
+        sliderView.slider2.minimumValue = Float(minValue2)
+
+        sliderView.slider3.maximumValue = Float(maxValue3)
+        sliderView.slider3.value = Float(defaultValue3)
+        sliderView.slider3.minimumValue = Float(minValue3)
+
+        sliderView.slider4.maximumValue = Float(maxValue4)
+        sliderView.slider4.value = Float(defaultValue4)
+        sliderView.slider4.minimumValue = Float(minValue4)
+    }
+
+    func onLuminosityChange(sender: UISlider) {
 //        if !serial.isReady {
 //            let alert = UIAlertController(title: "Not connected", message: "What am I supposed to send this to?", preferredStyle: .alert)
 //            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action -> Void in self.dismiss(animated: true, completion: nil) }))

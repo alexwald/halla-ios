@@ -73,8 +73,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.scanTimeOut), userInfo: nil, repeats: false)
 
         tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)
-        
-       
 
     }
 
@@ -207,14 +205,28 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func serialIsReady(_ peripheral: CBPeripheral) {
+        queryLedCount()
+    }
+
+    func queryLedCount() {
+        serial.sendMessageToDevice("q")
+    }
+
+    func serialDidReceiveString(_ message: String) {
+        print("Scanner did receive Q string: \(message)")
+
+        if let asInt = Int(message) {
+            serial.ledCount = asInt
+        }
+
         if let hud = progressHUD {
             hud.hide(false)
         }
-        
+
         NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadStartViewController"), object: self)
         dismiss(animated: true, completion: nil)
     }
-    
+
     func serialDidChangeState() {
         if let hud = progressHUD {
             hud.hide(false)
@@ -225,7 +237,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
             dismiss(animated: true, completion: nil)
         }
     }
-    
 
 //MARK: IBActions
     
@@ -245,5 +256,4 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         serial.startScan()
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.scanTimeOut), userInfo: nil, repeats: false)
     }
-    
 }

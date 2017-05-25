@@ -92,6 +92,8 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     var isScanning: Bool {
         return centralManager.isScanning
     }
+
+    var ledCount: Int = 2
     
     /// UUID of the service to look for.
     var serviceUUID = CBUUID(string: "FFE0")

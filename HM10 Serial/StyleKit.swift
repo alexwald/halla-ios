@@ -687,4 +687,34 @@ class StyleKit: NSObject {
         bezier3Path.fill()
     }
 
+    public dynamic class func drawHalfCenterView(frame: CGRect = CGRect(x: 0, y: 0, width: 29, height: 30)) {
+        //// General Declarations
+        // This non-generic function dramatically improves compilation times of complex expressions.
+        func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
+
+        //// Color Declarations
+        let fillColor3 = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.000)
+
+
+        //// Subframes
+        let group: CGRect = CGRect(x: frame.minX, y: frame.minY, width: fastFloor((frame.width) * 0.56667 + 0.5), height: frame.height - 0.26)
+
+
+        //// Group
+        //// Bezier Drawing
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: group.minX + 0.99194 * group.width, y: group.minY + 0.00000 * group.height))
+        bezierPath.addLine(to: CGPoint(x: group.minX + 0.70672 * group.width, y: group.minY + 0.00000 * group.height))
+        bezierPath.addCurve(to: CGPoint(x: group.minX + 0.48898 * group.width, y: group.minY + 0.29165 * group.height), controlPoint1: CGPoint(x: group.minX + 0.69919 * group.width, y: group.minY + 0.10614 * group.height), controlPoint2: CGPoint(x: group.minX + 0.62661 * group.width, y: group.minY + 0.21087 * group.height))
+        bezierPath.addCurve(to: CGPoint(x: group.minX + 0.00000 * group.width, y: group.minY + 0.41890 * group.height), controlPoint1: CGPoint(x: group.minX + 0.35349 * group.width, y: group.minY + 0.37102 * group.height), controlPoint2: CGPoint(x: group.minX + 0.17796 * group.width, y: group.minY + 0.41339 * group.height))
+        bezierPath.addLine(to: CGPoint(x: group.minX + 0.00000 * group.width, y: group.minY + 0.58598 * group.height))
+        bezierPath.addCurve(to: CGPoint(x: group.minX + 0.49758 * group.width, y: group.minY + 0.71339 * group.height), controlPoint1: CGPoint(x: group.minX + 0.18091 * group.width, y: group.minY + 0.59024 * group.height), controlPoint2: CGPoint(x: group.minX + 0.35995 * group.width, y: group.minY + 0.63276 * group.height))
+        bezierPath.addCurve(to: CGPoint(x: group.minX + 0.71478 * group.width, y: group.minY + 1.00000 * group.height), controlPoint1: CGPoint(x: group.minX + 0.63306 * group.width, y: group.minY + 0.79291 * group.height), controlPoint2: CGPoint(x: group.minX + 0.70565 * group.width, y: group.minY + 0.89559 * group.height))
+        bezierPath.addLine(to: CGPoint(x: group.minX + 1.00000 * group.width, y: group.minY + 1.00000 * group.height))
+        bezierPath.addLine(to: CGPoint(x: group.minX + 0.99194 * group.width, y: group.minY + 0.00000 * group.height))
+        bezierPath.close()
+        bezierPath.usesEvenOddFillRule = true
+        fillColor3.setFill()
+        bezierPath.fill()
+    }
 }

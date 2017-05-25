@@ -10,6 +10,8 @@
 		2FB850CC67D69E94AF0EAAB6 /* Pods_Serial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187958D85364DE6FA4917982 /* Pods_Serial.framework */; };
 		7741742D1E9A423600E2AAC0 /* LEDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7741742C1E9A423600E2AAC0 /* LEDViewController.swift */; };
 		778F6D511ECD78ED00973C7E /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778F6D501ECD78ED00973C7E /* IconButton.swift */; };
+		FA39A5EC1ED733E0007B5AF4 /* HalfSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A5EB1ED733E0007B5AF4 /* HalfSliderView.swift */; };
+		FA39A5EE1ED73921007B5AF4 /* HalfCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A5ED1ED73921007B5AF4 /* HalfCenterView.swift */; };
 		FA5AB96B1B77A30F007443C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB96A1B77A30F007443C8 /* AppDelegate.swift */; };
 		FA5AB9701B77A30F007443C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5AB96E1B77A30F007443C8 /* Main.storyboard */; };
 		FA5AB9721B77A30F007443C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5AB9711B77A30F007443C8 /* Images.xcassets */; };
@@ -33,6 +35,8 @@
 		7741742C1E9A423600E2AAC0 /* LEDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LEDViewController.swift; sourceTree = "<group>"; };
 		778F6D501ECD78ED00973C7E /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		B4591DE6F538A6405539C153 /* Pods-Serial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Serial.release.xcconfig"; path = "Pods/Target Support Files/Pods-Serial/Pods-Serial.release.xcconfig"; sourceTree = "<group>"; };
+		FA39A5EB1ED733E0007B5AF4 /* HalfSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSliderView.swift; sourceTree = "<group>"; };
+		FA39A5ED1ED73921007B5AF4 /* HalfCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfCenterView.swift; sourceTree = "<group>"; };
 		FA5AB9651B77A30E007443C8 /* Serial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Serial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5AB9691B77A30F007443C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA5AB96A1B77A30F007443C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,8 +140,10 @@
 				FA62F58C1B8B85B3000479B6 /* MBProgressHUD.m */,
 				FA9174451EA5364500DD354E /* LEDSlider.swift */,
 				FA9174491EA536E500DD354E /* SliderView.swift */,
+				FA39A5EB1ED733E0007B5AF4 /* HalfSliderView.swift */,
 				FA9174471EA536B300DD354E /* UIColor+Hex.swift */,
 				FA91744B1EA539B400DD354E /* CenterView.swift */,
+				FA39A5ED1ED73921007B5AF4 /* HalfCenterView.swift */,
 				FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */,
 				FA762DFF1ED39569005D076D /* StyleKit.swift */,
 			);
@@ -290,7 +296,9 @@
 				FA73A0361B78FEB0005EFDB6 /* SerialViewController.swift in Sources */,
 				FA73A03A1B790C33005EFDB6 /* PreferencesTableViewController.swift in Sources */,
 				FA5AB96B1B77A30F007443C8 /* AppDelegate.swift in Sources */,
+				FA39A5EE1ED73921007B5AF4 /* HalfCenterView.swift in Sources */,
 				FA755D301B78B8FE00A902FE /* ScannerViewController.swift in Sources */,
+				FA39A5EC1ED733E0007B5AF4 /* HalfSliderView.swift in Sources */,
 				778F6D511ECD78ED00973C7E /* IconButton.swift in Sources */,
 				FA91744C1EA539B400DD354E /* CenterView.swift in Sources */,
 				7741742D1E9A423600E2AAC0 /* LEDViewController.swift in Sources */,
