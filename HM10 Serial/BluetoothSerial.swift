@@ -1,10 +1,7 @@
 //
-//  BluetoothSerial.swift (originally DZBluetoothSerialHandler.swift)
 //  HM10 Serial
 //
-//  Created by Alex on 09-08-15.
-//  Copyright (c) 2017 Hangar42. All rights reserved.
-//
+//  Copyright (c) 2017 passionmakes.us. All rights reserved.
 //
 
 import UIKit

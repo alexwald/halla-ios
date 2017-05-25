@@ -3,7 +3,7 @@
 //  Halla 360
 //
 //  Created by Alexander Wald on 22/05/2017.
-//  Copyright © 2017 Balancing Rock. All rights reserved.
+//  Copyright © 2017 passionmakes.us. All rights reserved.
 //
 
 //import Foundation
@@ -654,6 +654,37 @@ class StyleKit: NSObject {
         bezier2Path.usesEvenOddFillRule = true
         fillColor.setFill()
         bezier2Path.fill()
+    }
+
+    public dynamic class func drawCenterView(frame: CGRect = CGRect(x: 0, y: 0, width: 29, height: 30)) {
+        //// Color Declarations
+        let fillColor2 = UIColor(red: 0.079, green: 0.079, blue: 0.079, alpha: 1.000)
+
+
+        //// Subframes
+        let uI_HALLA_appaiGroup: CGRect = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height - 0.02)
+
+
+        //// UI_HALLA_app.ai Group
+        //// Bezier 3 Drawing
+        let bezier3Path = UIBezierPath()
+        bezier3Path.move(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.00000 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.58597 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.29158 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.71350 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.10610 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.59032 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.21092 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.63281 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.41889 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 1.00000 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.37097 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.79288 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.41339 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.89562 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addLine(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.58594 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 1.00000 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.71348 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.70841 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.59030 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.89388 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.63279 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.78910 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 1.00000 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.58114 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.79287 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.62906 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.89561 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.58664 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addLine(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 1.00000 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.41407 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.70842 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.28653 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.89390 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.40971 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.78908 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.36722 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.58111 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.00000 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.62903 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.20715 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.58658 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.10438 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addLine(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.41406 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.00000 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.28652 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.29159 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.40970 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.10612 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.36721 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.21094 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addCurve(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.00000 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.41889 * uI_HALLA_appaiGroup.height), controlPoint1: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.20713 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.37097 * uI_HALLA_appaiGroup.height), controlPoint2: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.10439 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.41343 * uI_HALLA_appaiGroup.height))
+        bezier3Path.addLine(to: CGPoint(x: uI_HALLA_appaiGroup.minX + 0.00000 * uI_HALLA_appaiGroup.width, y: uI_HALLA_appaiGroup.minY + 0.58597 * uI_HALLA_appaiGroup.height))
+        bezier3Path.close()
+        bezier3Path.usesEvenOddFillRule = true
+        fillColor2.setFill()
+        bezier3Path.fill()
     }
 
 }

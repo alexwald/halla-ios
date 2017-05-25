@@ -3,7 +3,7 @@
 //  HM10 Serial
 //
 //  Created by Alexander Wald on 17/04/17.
-//  Copyright © 2017 Balancing Rock. All rights reserved.
+//  Copyright © 2017 passionmakes.us. All rights reserved.
 //
 
 import UIKit
@@ -37,18 +37,11 @@ class SliderView: UIView, UIGestureRecognizerDelegate {
         ///CENTER VIEW
         centerView.snp.makeConstraints { (make) -> Void in
             make.center.equalToSuperview()
-            make.height.equalTo(30)
-            make.width.equalTo(30)
+            make.height.equalTo(84)
+            make.width.equalTo(84)
         }
-        self.centerView.transform = CGAffineTransform(scaleX: 2.8, y: 2.8)
 
         centerView.isUserInteractionEnabled = false
-//
-//        let tapRec = UITapGestureRecognizer(target: self, action:#selector(userTappedCenterView))
-//        tapRec.numberOfTapsRequired = 1
-//        tapRec.delegate = self
-//        centerView.addGestureRecognizer(tapRec)
-
 
         ///cont1
         self.addSubview(container1)
@@ -163,63 +156,35 @@ class SliderView: UIView, UIGestureRecognizerDelegate {
         self.addSubview(container4)
         self.addSubview(centerView)
         self.isUserInteractionEnabled = true
-//        centerView.isUserInteractionEnabled = true
-//
-//        let tapRec = UITapGestureRecognizer(target: self, action:#selector(userTappedCenterView))
-//        tapRec.numberOfTapsRequired = 1
-//        tapRec.delegate = self
-//        centerView.addGestureRecognizer(tapRec)
+
 
         sliderArray.append(contentsOf: [slider, slider2, slider3, slider4])
     }
 
-//   @IBAction func userTappedCenterView(sender: UITapGestureRecognizer? = nil) {
-//
-//        UIView.animate(withDuration: 0.5, animations: { 
-//            self.centerView.alpha = 0.5
-//        }) { (didFinish) in
-//            UIView.animate(withDuration: 0.5, animations: { 
-//                self.centerView.alpha = 1.0
-//            })
-//        }
-//
-//        if let maybeDelegate = delegate {
-//           maybeDelegate.centerViewTapped()
-//        }
-//    }
-//
-//    //MARK tap Delegater
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-////        super.touchesBegan(<#T##touches: Set<UITouch>##Set<UITouch>#>, with: <#T##UIEvent?#>)
-//
-////        let point = touches.first?.location(in: self)
-//        if let maybePoint  = touches.first?.location(in: self) {
-//
-//            if centerView.layer.contains(maybePoint) {
-//                print("Hit shapeLayer") // Do something
-//            }
-//
-//            if let layer = self.centerView.shapeLayer.hitTest(maybePoint) as? CAShapeLayer { // If you hit a layer and if its a Shapelayer
-//                if centerView.shapeLayer.contains(maybePoint) {
-//                    print("Hit shapeLayer") // Do something
-//
-//                }
-//        }
-//
-////            if CGPathContainsPoint(layer.path, nil, point, false) { // Optional, if you are inside its content path
-////            }
-//        }
-//
-//    }
+        if let maybePoint  = touches.first?.location(in: centerView) {
 
+            if centerView.layer.contains(maybePoint) {
+                delegate?.centerViewTapped()
 
+                let centerViewTransform = (CGAffineTransform(scaleX: 0.8, y: 0.8))
+
+                UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 12, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
+                    self.centerView.transform = centerViewTransform
+                }, completion:  { (completed) in
+                    UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 12, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
+                        self.centerView.transform = .identity
+                    }, completion: nil)
+                })
+
+                print("Hit shapeLayer") // Do something
+            }
+        }
+    }
 }

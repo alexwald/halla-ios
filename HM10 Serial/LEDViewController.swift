@@ -3,7 +3,7 @@
 //  HM10 Serial
 //
 //  Created by Alexander Wald on 09/04/2017.
-//  Copyright © 2017 Balancing Rock. All rights reserved.
+//  Copyright © 2017 passionmakes.us. All rights reserved.
 //
 
 import Foundation
@@ -15,7 +15,7 @@ public protocol LEDVCDelegate {
     func ledVCDidFinish()
 }
 
-class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRecognizerDelegate, EasyTipViewDelegate {
+class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRecognizerDelegate, EasyTipViewDelegate, SliderViewDelegate {
 
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var barButton: UIBarButtonItem!
@@ -97,9 +97,11 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         // UI
         reloadView()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(SerialViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(SerialViewController.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.queryLedCount), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
 
         view.addSubview(sliderView)
+        sliderView.delegate = self
 
         sliderView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view).offset(0)
@@ -127,14 +129,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         sliderView.slider4.maximumValue = Float(maxValue4)
         sliderView.slider4.value = Float(defaultValue4)
         sliderView.slider4.minimumValue = Float(minValue4)
-
-//        let tapRec = UITapGestureRecognizer(target: self, action:#selector(userTappedCenterView))
-//        tapRec.numberOfTapsRequired = 1
-//        tapRec.delegate = self
-//        sliderView.addGestureRecognizer(tapRec)
-        
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,14 +156,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
         
     }
-
-//    func userTappedCenterView(sender: UITapGestureRecognizer?) {
-//        sender.touches
-//    }
-
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
 
     func easyTipViewDidDismiss(_ tipView : EasyTipView) {
         print("tip did dismiss")
@@ -211,13 +197,17 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
     }
 
+    func queryLedCount() {
+        reloadView()
+    }
+
     func onLuminosityChange(sender: UISlider){
-        if !serial.isReady {
-            let alert = UIAlertController(title: "Not connected", message: "What am I supposed to send this to?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action -> Void in self.dismiss(animated: true, completion: nil) }))
-            present(alert, animated: true, completion: nil)
-            return
-        }
+//        if !serial.isReady {
+//            let alert = UIAlertController(title: "Not connected", message: "What am I supposed to send this to?", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action -> Void in self.dismiss(animated: true, completion: nil) }))
+//            present(alert, animated: true, completion: nil)
+//            return
+//        }
         let int: Int = Int(sender.value)
         serial.sendMessageToDevice("\(String(int))\n")
         print("value sent to device: \(String(int))")
@@ -272,7 +262,13 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         shouldRotateBack = !shouldRotateBack
     }
 
-    @IBAction func turnOffAll(sender: UIBarButtonItem) {
+    //MARK: SliderView Delegate
+
+    func centerViewTapped() {
+        turnOffAll()
+    }
+
+    @IBAction func turnOffAll() {
 
 //        guard let _ = serial.connectedPeripheral else { return }
 

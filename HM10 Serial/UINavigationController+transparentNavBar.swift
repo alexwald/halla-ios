@@ -3,7 +3,7 @@
 //  HM10 Serial
 //
 //  Created by Alexander Wald on 01/05/17.
-//  Copyright © 2017 Balancing Rock. All rights reserved.
+//  Copyright © 2017 passionmakes.us. All rights reserved.
 //
 
 import Foundation

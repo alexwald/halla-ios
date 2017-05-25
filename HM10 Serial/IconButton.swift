@@ -3,7 +3,7 @@
 //  Halla 360
 //
 //  Created by Alexander Wald on 18/05/2017.
-//  Copyright © 2017 Balancing Rock. All rights reserved.
+//  Copyright © 2017 passionmakes.us. All rights reserved.
 //
 
 import Foundation

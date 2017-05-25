@@ -3,7 +3,7 @@
 //  HM10 Serial
 //
 //  Created by Alex on 10-08-15.
-//  Copyright (c) 2015 Balancing Rock. All rights reserved.
+//  Copyright (c) 2015 passionmakes.us. All rights reserved.
 //
 
 import UIKit
@@ -173,9 +173,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         // add to the array, next sort & reload
         let theRSSI = RSSI?.floatValue ?? 0.0
         peripherals.append(peripheral: peripheral, RSSI: theRSSI)
-//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
-//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
-//        peripherals.append(peripheral: peripheral, RSSI: theRSSI)
 
         peripherals.sort { $0.RSSI < $1.RSSI }
         tableView.reloadData()
