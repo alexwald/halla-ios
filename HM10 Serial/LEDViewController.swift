@@ -21,7 +21,9 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var turnOff: UIBarButtonItem!
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var dimButton: UIButton!
 
+    
     var delegate: LEDVCDelegate!
 
     let minValue1 = 0.0
@@ -45,7 +47,11 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     var connectButton: ConnectivityIconButton!
     var rotateButton: IconButton!
     var shouldRotateBack: Bool = false
-
+    var shouldDimSmoothly: Bool = false {
+        didSet {
+            shouldDimSmoothly ? (dimButton.alpha = 1.0) : (dimButton.alpha = 1.0)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -295,6 +301,20 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             // WE HAVE SOME STORED VALUES, let's restore
             print("storing values")
             
+            /*
+            for i in Int(minValue1)..<firstValue {
+//                print("🔵", i)
+                
+                delay(bySeconds: 0.5, dispatchLevel: .background) {
+                    // delayed code that will run on background thread
+                    serial.sendMessageToDevice("\(String(i))\n")
+//                    serial.sendMessageToDevice("\(String(i))\n")
+                    
+                }
+            }
+            */
+
+            
             serial.sendMessageToDevice("\(String(firstValue))\n")
             UIView.animate(withDuration: 0.2, animations: {
                 self.sliderView.slider.setValue(Float(firstValue), animated: true)
@@ -354,6 +374,33 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             })
         }
     }
+    
+    @IBAction func toggleDimAll() {
+        
+        
+        let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.userInitiated)
+        // let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.background)
+        // let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.userInitiated)
+        let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.utility)
+        
+        queue1.async {
+            for i in 0..<10 {
+                print("🔴", i)
+            }
+        }
+        
+        queue2.async {
+            for i in 100..<110 {
+                print("🔵", i)
+            }
+        }
+        
+        
+        let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+        concurrentQueue.sync {
+            
+        }
+    }
 
     @IBAction func dismiss(sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: nil)
@@ -366,6 +413,28 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         } else {
             serial.disconnect()
             reloadView()
+        }
+    }
+    
+    @IBAction func toggleShouldDim(sender: UIButton) {
+        shouldDimSmoothly = !shouldDimSmoothly
+    }
+    
+    public func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
+        let dispatchTime = DispatchTime.now() + seconds
+        dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
+    }
+    
+    public enum DispatchLevel {
+        case main, userInteractive, userInitiated, utility, background
+        var dispatchQueue: DispatchQueue {
+            switch self {
+            case .main:                 return DispatchQueue.main
+            case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
+            case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
+            case .utility:              return DispatchQueue.global(qos: .utility)
+            case .background:           return DispatchQueue.global(qos: .background)
+            }
         }
     }
 }

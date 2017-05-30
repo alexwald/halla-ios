@@ -138,6 +138,7 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         // return a cell with the peripheral name as text in the label
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let label = cell.viewWithTag(1) as! UILabel!
+//        print(peripherals[(indexPath as NSIndexPath).row].peripheral.u)
         label?.text = peripherals[(indexPath as NSIndexPath).row].peripheral.name
         return cell
     }
@@ -209,6 +210,11 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func queryLedCount() {
+
+        //         mySerial.println("AT + NAMESvietidlo");
+
+        serial.sendMessageToDevice("AT + NAMESvietidlo")
+
         serial.sendMessageToDevice("q")
     }
 
