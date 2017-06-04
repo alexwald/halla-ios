@@ -11,6 +11,7 @@ import SnapKit
 
 protocol SliderViewDelegate {
     func centerViewTapped()
+    func topBottomSwitchChanged(sender: UISwitch)
 }
 
 class SliderView: UIView, UIGestureRecognizerDelegate {

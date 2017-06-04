@@ -7,10 +7,11 @@ target 'Serial' do
   swift_version = "3.0"
   
   pod 'SnapKit', '~> 3.2.0'
+  pod 'C4', :git => 'https://github.com/alexwald/C4iOS.git',  :branch => 'master'
 
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'EasyTipView', '~> 1.0.2'
-pod 'Macaw'
 
 end
+

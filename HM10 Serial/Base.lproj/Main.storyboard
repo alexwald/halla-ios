@@ -87,7 +87,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="x06-gA-foi">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <action selector="cancel:" destination="33X-Xk-e4d" id="01a-L1-wKD"/>
+                                <action selector="cancelScanning:" destination="33X-Xk-e4d" id="kF6-Ho-fuE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Try again" id="cle-lH-dvA">

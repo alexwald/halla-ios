@@ -26,9 +26,9 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     
     var delegate: LEDVCDelegate!
 
-    let minValue1 = 0.0
-    let maxValue1 = 255.0
-    let defaultValue1 = 0.0
+    let minValue1 = 0
+    let maxValue1 = 255
+    let defaultValue1 = 0
 
     let minValue2 = 256
     let defaultValue2 = 256
@@ -55,6 +55,8 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        dimButton.isHidden = true
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -137,6 +139,40 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         defaults.set(1, forKey: "tipDismissed")
 
     }
+
+    func topBottomSwitchChanged(sender: UISwitch) {
+        if sender.isOn {
+
+
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sliderView.slider.setValue(Float(self.maxValue1), animated: true)
+                self.sliderView.slider3.setValue(Float(self.minValue1), animated: true)
+
+            })
+
+            serial.sendMessageToDevice("\(String(maxValue1))\n")
+
+
+            serial.sendMessageToDevice("\(String(minValue3))\n")
+
+
+
+        } else {
+
+
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sliderView.slider.setValue(Float(self.minValue1), animated: true)
+                self.sliderView.slider3.setValue(Float(self.maxValue3), animated: true)
+
+            })
+
+            serial.sendMessageToDevice("\(String(minValue1))\n")
+            serial.sendMessageToDevice("\(String(maxValue3))\n")
+
+
+        }
+    }
+
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -299,22 +335,24 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         if let firstValue = defaults.object(forKey: "storedValue1") as? Int {
             
             // WE HAVE SOME STORED VALUES, let's restore
-            print("storing values")
+            print("REstoring values")
             
-            /*
-            for i in Int(minValue1)..<firstValue {
-//                print("🔵", i)
-                
-                delay(bySeconds: 0.5, dispatchLevel: .background) {
-                    // delayed code that will run on background thread
-                    serial.sendMessageToDevice("\(String(i))\n")
+            
+//            for i in Int(minValue1)..<firstValue {
+////                print("🔵", i)
+//                
+//                delay(bySeconds: 0.5, dispatchLevel: .background) {
+//                    // delayed code that will run on background thread
 //                    serial.sendMessageToDevice("\(String(i))\n")
-                    
-                }
-            }
-            */
+////                    serial.sendMessageToDevice("\(String(i))\n")
+//                    print("sending messag to device: \(String(i))")
+//
+//                    
+//                }
+//            }
 
-            
+
+        
             serial.sendMessageToDevice("\(String(firstValue))\n")
             UIView.animate(withDuration: 0.2, animations: {
                 self.sliderView.slider.setValue(Float(firstValue), animated: true)
@@ -339,7 +377,7 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             
             if let fourthValue = defaults.object(forKey: "storedValue4") as? Int {
                 serial.sendMessageToDevice("\(String(fourthValue))\n")
-                
+
                 UIView.animate(withDuration: 0.2, animations: {
                     self.sliderView.slider4.setValue(Float(fourthValue), animated: true)
                 })

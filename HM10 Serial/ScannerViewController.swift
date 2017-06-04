@@ -164,6 +164,10 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
 //MARK: BluetoothSerialDelegate
     
     func serialDidDiscoverPeripheral(_ peripheral: CBPeripheral, RSSI: NSNumber?) {
+
+        print("found peripheral \(peripheral.name ?? "name not avaiable at this time")")
+        print("device uuid: \(peripheral.identifier)")
+
         // check whether it is a duplicate
         for exisiting in peripherals {
             if exisiting.peripheral.identifier == peripheral.identifier { return }
@@ -211,9 +215,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
 
     func queryLedCount() {
 
-        //         mySerial.println("AT + NAMESvietidlo");
-
-        serial.sendMessageToDevice("AT + NAMESvietidlo")
 
         serial.sendMessageToDevice("q")
     }
@@ -246,7 +247,7 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
 
 //MARK: IBActions
     
-    @IBAction func cancel(_ sender: AnyObject) {
+    @IBAction func cancelScanning(_ sender: AnyObject) {
         // go back
         serial.stopScan()
         dismiss(animated: true, completion: nil)

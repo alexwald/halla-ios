@@ -93,7 +93,7 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
         return centralManager.isScanning
     }
 
-    var ledCount: Int = 4
+    var ledCount: Int = 2
     
     /// UUID of the service to look for.
     var serviceUUID = CBUUID(string: "FFE0")
@@ -160,6 +160,7 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     /// Send a string to the device
     func sendMessageToDevice(_ message: String) {
         guard isReady else { return }
+        
         
         if let data = message.data(using: String.Encoding.utf8) {
             connectedPeripheral!.writeValue(data, for: writeCharacteristic!, type: writeType)
