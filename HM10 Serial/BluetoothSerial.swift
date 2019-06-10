@@ -67,7 +67,7 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     /// The delegate object the BluetoothDelegate methods will be called upon
     var delegate: BluetoothSerialDelegate!
     
-    /// The CBCentralManager this bluetooth serial handler uses for... well, everything really
+    /// The CBCentralManager this bluetooth serial handler uses for everything
     var centralManager: CBCentralManager!
     
     /// The peripheral we're trying to connect to (nil if none)
@@ -93,7 +93,7 @@ final class BluetoothSerial: NSObject, CBCentralManagerDelegate, CBPeripheralDel
         return centralManager.isScanning
     }
 
-    var ledCount: Int = 2
+    var ledCount: Int = 4
     
     /// UUID of the service to look for.
     var serviceUUID = CBUUID(string: "FFE0")

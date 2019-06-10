@@ -54,8 +54,7 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         let barButtonItem = UIBarButtonItem.init(customView: refreshButton)
         self.navigationItem.rightBarButtonItem = barButtonItem
         
-        // tryAgainButton is only enabled when we've stopped scanning
-//        tryAgainButton.isEnabled = false
+        // refresh is only enabled when we've stopped scanning
         refreshButton.isEnabled = false
         // remove extra seperator insets (looks better imho)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -73,7 +72,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.scanTimeOut), userInfo: nil, repeats: false)
 
         tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,7 +83,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     func scanTimeOut() {
         // timeout has occurred, stop scanning and give the user the option to try again
         serial.stopScan()
-//        tryAgainButton.isEnabled = true
         refreshButton.isEnabled = true
         title = "Done scanning"
     }
@@ -143,7 +140,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
     
-    
 //MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -159,7 +155,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(ScannerViewController.connectTimeOut), userInfo: nil, repeats: false)
     }
-    
     
 //MARK: BluetoothSerialDelegate
     
@@ -186,7 +181,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
             hud.hide(false)
         }
         
-//        tryAgainButton.isEnabled = true
         refreshButton.isEnabled = true
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud?.mode = MBProgressHUDMode.text
@@ -198,8 +192,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         if let hud = progressHUD {
             hud.hide(false)
         }
-        
-//        tryAgainButton.isEnabled = true
         refreshButton.isEnabled = true
 
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
@@ -214,8 +206,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func queryLedCount() {
-
-
         serial.sendMessageToDevice("q")
     }
 
@@ -257,7 +247,6 @@ final class ScannerViewController: UIViewController, UITableViewDataSource, UITa
         // empty array an start again
         peripherals = []
         tableView.reloadData()
-//        tryAgainButton.isEnabled = false
         refreshButton.isEnabled = false
         title = "Scanning ..."
         serial.startScan()

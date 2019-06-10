@@ -47,15 +47,12 @@ class Switch: UISwitch {
 
         thumb!.view.transform = centerViewTransform
 
-
         imageView.image = UIImage()
 
         self.addTarget(self, action: #selector(Switch.toggle), for: UIControlEvents.valueChanged)
 
         mainView.add(background)
         mainView.bringToFront(imageView)
-
-//        imageView.transform = centerViewTransform
 
         let sv0 = mainView.subviews[0]
         let sv1 = mainView.subviews[1]

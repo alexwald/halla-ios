@@ -10,7 +10,7 @@ public class SwitchThumb: Circle {
     }
 
     func setup() {
-        fillColor = Color(UIColor.hexStringToUIColor(hex: "FEC709"))
+        fillColor = Color(UIColor.hallaYellow())
     }
 
     func toggle(force: Bool) {
@@ -24,12 +24,12 @@ public class SwitchThumb: Circle {
     }
 
     func on() {
-        self.fillColor = Color(UIColor.hexStringToUIColor(hex: "FEC709"))
-        //        topBottomSwitch.thumbTintColor = UIColor.hexStringToUIColor(hex: "FEC709")
+        self.fillColor = Color(UIColor.hallaYellow())
+        //        topBottomSwitch.thumbTintColor = UIColor.hallaYellow()
 
     }
 
     func off() {
-        self.fillColor = Color(UIColor.hexStringToUIColor(hex: "FEC709"))
+        self.fillColor = Color(UIColor.hallaYellow())
     }
 }

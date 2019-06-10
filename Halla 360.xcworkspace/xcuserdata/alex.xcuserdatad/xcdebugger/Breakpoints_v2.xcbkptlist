@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HM10 Serial/ScannerViewController.swift"
-            timestampString = "518123140.562214"
+            filePath = "HM10 Serial/LEDViewController.swift"
+            timestampString = "518298045.275256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "serialIsReady(_:)"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
+            landmarkName = "LEDViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HM10 Serial/LEDViewController.swift"
+            timestampString = "518876457.117907"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "dismiss(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -241,7 +241,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfN-Qt-IvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3374" y="1387"/>
+            <point key="canvasLocation" x="3786" y="1387"/>
         </scene>
         <!--Bluetooth Serial-->
         <scene sceneID="fbM-Ih-5Rw">
@@ -347,24 +347,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gv0-Tc-qGy">
-                                <rect key="frame" x="16" y="629" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="bdU-be-gjh"/>
-                                    <constraint firstAttribute="width" constant="46" id="fwl-X1-naA"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="toggleShouldDimWithSender:" destination="TpW-Wz-R7s" eventType="touchUpInside" id="f2W-L4-mMc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.7803921568627451" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cOf-EB-j6S" firstAttribute="top" secondItem="fsg-Wd-acC" secondAttribute="bottom" constant="8" id="FAp-7C-NcP"/>
                             <constraint firstAttribute="trailing" secondItem="fsg-Wd-acC" secondAttribute="trailing" constant="16" id="Uom-5l-Ki3"/>
-                            <constraint firstItem="gv0-Tc-qGy" firstAttribute="leading" secondItem="LKd-oQ-SSc" secondAttribute="leading" constant="16" id="ZHP-ra-hyA"/>
-                            <constraint firstItem="cOf-EB-j6S" firstAttribute="top" secondItem="gv0-Tc-qGy" secondAttribute="bottom" constant="8" id="b4S-vH-8IX"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -384,7 +371,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barButton" destination="bWP-82-EL5" id="42p-dc-xdJ"/>
-                        <outlet property="dimButton" destination="gv0-Tc-qGy" id="5uu-cy-vsl"/>
                         <outlet property="navItem" destination="GZV-TJ-nGT" id="Qmg-Hq-fbY"/>
                         <outlet property="versionLabel" destination="fsg-Wd-acC" id="aZK-wj-331"/>
                         <segue destination="HTb-Lt-944" kind="presentation" identifier="ShowScanner" modalPresentationStyle="overCurrentContext" id="yoZ-Jb-iyL"/>

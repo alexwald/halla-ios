@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2FB850CC67D69E94AF0EAAB6 /* Pods_Serial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187958D85364DE6FA4917982 /* Pods_Serial.framework */; };
 		7741742D1E9A423600E2AAC0 /* LEDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7741742C1E9A423600E2AAC0 /* LEDViewController.swift */; };
+		778119E91EE684CA00B06000 /* UIColor+Halla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778119E81EE684CA00B06000 /* UIColor+Halla.swift */; };
 		778F6D511ECD78ED00973C7E /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778F6D501ECD78ED00973C7E /* IconButton.swift */; };
 		FA39A5EC1ED733E0007B5AF4 /* HalfSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A5EB1ED733E0007B5AF4 /* HalfSliderView.swift */; };
 		FA39A5EE1ED73921007B5AF4 /* HalfCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A5ED1ED73921007B5AF4 /* HalfCenterView.swift */; };
@@ -29,13 +30,13 @@
 		FA9E32B41EE30135004DC232 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E32B11EE30135004DC232 /* Switch.swift */; };
 		FA9E32B51EE30135004DC232 /* SwitchBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E32B21EE30135004DC232 /* SwitchBackground.swift */; };
 		FA9E32B61EE30135004DC232 /* SwitchThumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E32B31EE30135004DC232 /* SwitchThumb.swift */; };
-		FAF206531EB7961E002C229C /* UINavigationController+transparentNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		187958D85364DE6FA4917982 /* Pods_Serial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Serial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		604CACE324189EF8E842B34B /* Pods-Serial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Serial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Serial/Pods-Serial.debug.xcconfig"; sourceTree = "<group>"; };
 		7741742C1E9A423600E2AAC0 /* LEDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LEDViewController.swift; sourceTree = "<group>"; };
+		778119E81EE684CA00B06000 /* UIColor+Halla.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Halla.swift"; sourceTree = "<group>"; };
 		778F6D501ECD78ED00973C7E /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		B4591DE6F538A6405539C153 /* Pods-Serial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Serial.release.xcconfig"; path = "Pods/Target Support Files/Pods-Serial/Pods-Serial.release.xcconfig"; sourceTree = "<group>"; };
 		FA39A5EB1ED733E0007B5AF4 /* HalfSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSliderView.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		FA9E32B11EE30135004DC232 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		FA9E32B21EE30135004DC232 /* SwitchBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchBackground.swift; sourceTree = "<group>"; };
 		FA9E32B31EE30135004DC232 /* SwitchThumb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchThumb.swift; sourceTree = "<group>"; };
-		FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+transparentNavBar.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +143,7 @@
 			children = (
 				FA9E32B01EE30128004DC232 /* Switch */,
 				778F6D501ECD78ED00973C7E /* IconButton.swift */,
+				778119E81EE684CA00B06000 /* UIColor+Halla.swift */,
 				FA62F58B1B8B85B3000479B6 /* MBProgressHUD.h */,
 				FA62F58C1B8B85B3000479B6 /* MBProgressHUD.m */,
 				FA9174451EA5364500DD354E /* LEDSlider.swift */,
@@ -151,7 +152,6 @@
 				FA9174471EA536B300DD354E /* UIColor+Hex.swift */,
 				FA91744B1EA539B400DD354E /* CenterView.swift */,
 				FA39A5ED1ED73921007B5AF4 /* HalfCenterView.swift */,
-				FAF206521EB7961E002C229C /* UINavigationController+transparentNavBar.swift */,
 				FA762DFF1ED39569005D076D /* StyleKit.swift */,
 			);
 			name = Views;
@@ -268,7 +268,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3b12bab27cde19366c90021b97b95e6272e79921 9fbca1df3d3e049897945821902de1e4e2cc5e8ef019701021ca31bd41208fc7";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3b12bab27cde19366c90021b97b95e6272e79921 9fbca1df3d3e049897945821902de1e4e2cc5e8ef019701021ca31bd41208fc7\n";
 		};
 		92A3D19BEE8E71C2DF0D0FDA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -319,12 +319,12 @@
 				FA9E32B51EE30135004DC232 /* SwitchBackground.swift in Sources */,
 				FA39A5EC1ED733E0007B5AF4 /* HalfSliderView.swift in Sources */,
 				778F6D511ECD78ED00973C7E /* IconButton.swift in Sources */,
+				778119E91EE684CA00B06000 /* UIColor+Halla.swift in Sources */,
 				FA91744C1EA539B400DD354E /* CenterView.swift in Sources */,
 				7741742D1E9A423600E2AAC0 /* LEDViewController.swift in Sources */,
 				FA62F58D1B8B85B3000479B6 /* MBProgressHUD.m in Sources */,
 				FA9174481EA536B300DD354E /* UIColor+Hex.swift in Sources */,
 				FA9E32B61EE30135004DC232 /* SwitchThumb.swift in Sources */,
-				FAF206531EB7961E002C229C /* UINavigationController+transparentNavBar.swift in Sources */,
 				FA91744A1EA536E500DD354E /* SliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,7 +456,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "HM10 Serial/Info.plist";
 				INSTALL_OWNER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.passionmakes.halla360;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,7 +481,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "HM10 Serial/Info.plist";
 				INSTALL_OWNER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.passionmakes.halla360;
 				PRODUCT_NAME = "$(TARGET_NAME)";

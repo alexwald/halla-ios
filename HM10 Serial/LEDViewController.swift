@@ -21,9 +21,8 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     @IBOutlet weak var barButton: UIBarButtonItem!
     @IBOutlet weak var turnOff: UIBarButtonItem!
     @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var dimButton: UIButton!
+    var dimButton: IconButton!
 
-    
     var delegate: LEDVCDelegate!
 
     let minValue1 = 0
@@ -49,14 +48,13 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
     var shouldRotateBack: Bool = false
     var shouldDimSmoothly: Bool = false {
         didSet {
-            shouldDimSmoothly ? (dimButton.alpha = 1.0) : (dimButton.alpha = 1.0)
+            shouldDimSmoothly ? (dimButton.alpha = 1.0) : (dimButton.alpha = 0.3)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dimButton.isHidden = true
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -69,9 +67,6 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
         
         connectButton = ConnectivityIconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .addDevice)
-        rotateButton = IconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .rotateOff)
-        
-        
         view.addSubview(connectButton)
         
         connectButton.snp.makeConstraints { (make) -> Void in
@@ -81,9 +76,10 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             make.height.equalTo(39)
         }
         
-        view.addSubview(rotateButton)
-        
         connectButton.addTarget(self, action: #selector(barButtonPressed(_:)) , for: .touchUpInside)
+
+        rotateButton = IconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .rotateOff)
+        view.addSubview(rotateButton)
 
         rotateButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view).offset(30)
@@ -93,8 +89,21 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
         
         rotateButton.addTarget(self, action: #selector(rotate(sender:)) , for: .touchUpInside)
+        
+        dimButton = IconButton(rect: CGRect(x: 0, y: 0, width: 27, height: 29) , type: .dimButton)
+        view.addSubview(dimButton)
+        
+        dimButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view).offset(10)
+            make.width.equalTo(37)
+            make.height.equalTo(39)
+            make.bottom.equalTo(view).offset(-10)
+        }
+        
+        dimButton.addTarget(self, action: #selector(toggleShouldDim(sender:)) , for: .touchUpInside)
+        dimButton.alpha = 0.3
 
-        view.backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
+        view.backgroundColor = UIColor.hallaYellow()
 
         // init serial
         serial = BluetoothSerial(delegate: self)
@@ -142,44 +151,28 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
 
     func topBottomSwitchChanged(sender: UISwitch) {
         if sender.isOn {
-
-
             UIView.animate(withDuration: 0.2, animations: {
                 self.sliderView.slider.setValue(Float(self.maxValue1), animated: true)
                 self.sliderView.slider3.setValue(Float(self.minValue1), animated: true)
-
             })
 
             serial.sendMessageToDevice("\(String(maxValue1))\n")
-
-
             serial.sendMessageToDevice("\(String(minValue3))\n")
-
-
-
         } else {
-
-
             UIView.animate(withDuration: 0.2, animations: {
                 self.sliderView.slider.setValue(Float(self.minValue1), animated: true)
                 self.sliderView.slider3.setValue(Float(self.maxValue3), animated: true)
-
             })
-
             serial.sendMessageToDevice("\(String(minValue1))\n")
             serial.sendMessageToDevice("\(String(maxValue3))\n")
-
-
         }
     }
-
 
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
     func reloadView() {
-
 
         // in case we're the visible view again
         serial.delegate = self
@@ -337,30 +330,25 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             // WE HAVE SOME STORED VALUES, let's restore
             print("REstoring values")
             
-            
-//            for i in Int(minValue1)..<firstValue {
-////                print("🔵", i)
-//                
-//                delay(bySeconds: 0.5, dispatchLevel: .background) {
-//                    // delayed code that will run on background thread
-//                    serial.sendMessageToDevice("\(String(i))\n")
-////                    serial.sendMessageToDevice("\(String(i))\n")
-//                    print("sending messag to device: \(String(i))")
-//
-//                    
-//                }
-//            }
-
-
+            if shouldDimSmoothly {
+                dimLed(fromValue: minValue1, toValue: firstValue)
+            } else {
+                serial.sendMessageToDevice("\(String(firstValue))\n")
+            }
         
-            serial.sendMessageToDevice("\(String(firstValue))\n")
             UIView.animate(withDuration: 0.2, animations: {
                 self.sliderView.slider.setValue(Float(firstValue), animated: true)
             })
             defaults.removeObject(forKey: "storedValue1")
             
             if let secondValue = defaults.object(forKey: "storedValue2") as? Int {
-                serial.sendMessageToDevice("\(String(secondValue))\n")
+                
+                if shouldDimSmoothly {
+                    dimLed(fromValue: minValue2, toValue: secondValue)
+                } else {
+                    serial.sendMessageToDevice("\(String(secondValue))\n")
+                }
+                
                 UIView.animate(withDuration: 0.2, animations: {
                     self.sliderView.slider2.setValue(Float(secondValue), animated: true)
                 })
@@ -368,7 +356,12 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             }
             
             if let thirdValue = defaults.object(forKey: "storedValue3") as? Int {
-                serial.sendMessageToDevice("\(String(thirdValue))\n")
+                
+                if shouldDimSmoothly {
+                    dimLed(fromValue: minValue3, toValue: thirdValue)
+                } else {
+                    serial.sendMessageToDevice("\(String(thirdValue))\n")
+                }
                 UIView.animate(withDuration: 0.2, animations: {
                     self.sliderView.slider3.setValue(Float(thirdValue), animated: true)
                 })
@@ -376,7 +369,11 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             }
             
             if let fourthValue = defaults.object(forKey: "storedValue4") as? Int {
-                serial.sendMessageToDevice("\(String(fourthValue))\n")
+                if shouldDimSmoothly {
+                    dimLed(fromValue: minValue4, toValue: fourthValue)
+                } else {
+                    serial.sendMessageToDevice("\(String(fourthValue))\n")
+                }
 
                 UIView.animate(withDuration: 0.2, animations: {
                     self.sliderView.slider4.setValue(Float(fourthValue), animated: true)
@@ -390,12 +387,18 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
             print("storing values")
 
             // reset LEDs on arduino
-
-            serial.sendMessageToDevice("\(String(minValue1))\n")
-            serial.sendMessageToDevice("\(String(minValue2))\n")
-            serial.sendMessageToDevice("\(String(minValue3))\n")
-            serial.sendMessageToDevice("\(String(minValue4))\n")
-
+            if shouldDimSmoothly {
+                dimLed(fromValue: Int(sliderView.slider.value), toValue: minValue1)
+                dimLed(fromValue: Int(sliderView.slider2.value), toValue: minValue2)
+                dimLed(fromValue: Int(sliderView.slider3.value), toValue: minValue3)
+                dimLed(fromValue: Int(sliderView.slider4.value), toValue: minValue4)
+            } else {
+                serial.sendMessageToDevice("\(String(minValue1))\n")
+                serial.sendMessageToDevice("\(String(minValue2))\n")
+                serial.sendMessageToDevice("\(String(minValue3))\n")
+                serial.sendMessageToDevice("\(String(minValue4))\n")
+            }
+            
             // store to userDefaults
             defaults.set(Int(sliderView.slider.value), forKey: "storedValue1")
             defaults.set(Int(sliderView.slider2.value), forKey: "storedValue2")
@@ -413,30 +416,44 @@ class LEDViewController: UIViewController, BluetoothSerialDelegate, UIGestureRec
         }
     }
     
-    @IBAction func toggleDimAll() {
+     func dimLed(fromValue: Int, toValue: Int) {
         
+//        let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.userInitiated)
+//        // let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.background)
+//        // let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.userInitiated)
+//        let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.utility)
+//        
+//        queue1.async {
+//            for i in 0..<10 {
+//                print("🔴", i)
+//            }
+//        }
+//        
+//        queue2.async {
+//            for i in 100..<110 {
+//                print("🔵", i)
+//            }
+//        }
+//        
+//        
+//        let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+//        concurrentQueue.sync {
+//            
+//        }
         
-        let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.userInitiated)
-        // let queue1 = DispatchQueue(label: "com.appcoda.queue1", qos: DispatchQoS.background)
-        // let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.userInitiated)
-        let queue2 = DispatchQueue(label: "com.appcoda.queue2", qos: DispatchQoS.utility)
-        
-        queue1.async {
-            for i in 0..<10 {
-                print("🔴", i)
-            }
-        }
-        
-        queue2.async {
-            for i in 100..<110 {
-                print("🔵", i)
-            }
-        }
-        
-        
-        let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
-        concurrentQueue.sync {
+        var i = fromValue
+        Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
             
+            fromValue < toValue ? (i+=1):(i-=1)
+            
+//            print("hello \(i)")
+            serial.sendMessageToDevice("\(String(i))\n")
+            print("\(String(i))\n")
+
+
+            if i == toValue {
+                timer.invalidate()
+            }
         }
     }
 

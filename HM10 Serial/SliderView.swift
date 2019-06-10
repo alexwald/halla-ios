@@ -149,7 +149,7 @@ class SliderView: UIView, UIGestureRecognizerDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = UIColor.hexStringToUIColor(hex: "FEC709")
+        backgroundColor = UIColor.hallaYellow()
 
         self.addSubview(container1)
         self.addSubview(container2)

@@ -9,7 +9,7 @@
 import Foundation
 
 enum IconButtonType {
-    case refresh, rotateOff, rotateOn, disconnect, addDevice
+    case refresh, rotateOff, rotateOn, disconnect, addDevice, dimButton
 }
 
 class IconButton: UIButton {
@@ -46,6 +46,8 @@ class IconButton: UIButton {
             StyleKit.drawRotate2(frame: self.bounds)
         case .rotateOff:
             StyleKit.drawRotate1(frame: self.bounds)
+        case .dimButton:
+            StyleKit.drawDimButton(frame: self.bounds)
         default:
             print("problem")
         }

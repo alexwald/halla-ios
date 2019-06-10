@@ -14,9 +14,10 @@ class LEDSlider: UISlider {
         self.layer.cornerRadius = 20
         self.clipsToBounds = true
 
-        thumbTintColor = UIColor.hexStringToUIColor(hex: "FEC709")
-        maximumTrackTintColor =  UIColor.hexStringToUIColor(hex: "FEC709")
-        minimumTrackTintColor =  UIColor.hexStringToUIColor(hex: "FEC709")
+        thumbTintColor = UIColor.hallaYellow()
+//        thumb
+        maximumTrackTintColor = UIColor.hallaYellow()
+        minimumTrackTintColor =  UIColor.hallaYellow()
         backgroundColor = UIColor.black
     }
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +25,6 @@ class LEDSlider: UISlider {
     }
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: 7, y: (bounds.size.height/2), width: bounds.size.width-14, height: 2)
+        return CGRect(x: 7, y: (bounds.size.height/2)-1.5, width: bounds.size.width-14, height: 3)
     }
 }

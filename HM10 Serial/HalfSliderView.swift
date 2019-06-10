@@ -32,7 +32,7 @@ class HalfSliderView: SliderView {
         self.addSubview(centerView)
         self.addSubview(switchContainer)
 
-//        topBottomSwitch.thumbTintColor = UIColor.hexStringToUIColor(hex: "FEC709")
+//        topBottomSwitch.thumbTintColor = UIColor.hallaYellow()
 //        topBottomSwitch.tintColor = UIColor.black
 //        topBottomSwitch.onTintColor = UIColor.black
 
@@ -44,11 +44,8 @@ class HalfSliderView: SliderView {
      }
 
     func switchChanged(_ sender: UISwitch) {
-
-        sender.isOn ? (print("is on")) : (print("is off"))
-
+//        sender.isOn ? (print("is on")) : (print("is off"))
         self.delegate?.topBottomSwitchChanged(sender: sender)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -75,10 +72,15 @@ class HalfSliderView: SliderView {
         let degrees: CGFloat = 90.0 //the value in degrees
         let radians: CGFloat = degrees * CGFloat(-M_PI/180)
 
-        self.topBottomSwitch.transform = CGAffineTransform(rotationAngle: radians)
+
+        let centerViewTransform = (CGAffineTransform(scaleX: 1.2, y: 1.2))
+
+        topBottomSwitch.transform = centerViewTransform.rotated(by: radians)
 
         topBottomSwitch.snp.makeConstraints { (make) -> Void in
             make.center.equalToSuperview()
         }
+
+
     }
 }

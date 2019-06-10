@@ -717,4 +717,37 @@ class StyleKit: NSObject {
         fillColor3.setFill()
         bezierPath.fill()
     }
+    
+    public dynamic class func drawDimButton(frame: CGRect = CGRect(x: 0, y: 18, width: 17, height: 19)) {
+        //// Color Declarations
+        let fillColor = UIColor(red: 0.079, green: 0.079, blue: 0.079, alpha: 1.000)
+        
+        
+        //// Subframes
+        let dim: CGRect = CGRect(x: frame.minX - 0.03, y: frame.minY + 1, width: frame.width, height: frame.height - 2)
+        
+        //// dim
+        //// Bezier 18 Drawing
+        let bezier18Path = UIBezierPath()
+        bezier18Path.move(to: CGPoint(x: dim.minX + 0.14676 * dim.width, y: dim.minY + 0.85324 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.14676 * dim.width, y: dim.minY + 0.14676 * dim.height), controlPoint1: CGPoint(x: dim.minX + -0.04892 * dim.width, y: dim.minY + 0.65860 * dim.height), controlPoint2: CGPoint(x: dim.minX + -0.04892 * dim.width, y: dim.minY + 0.34140 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.85324 * dim.width, y: dim.minY + 0.14676 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.34140 * dim.width, y: dim.minY + -0.04892 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.65860 * dim.width, y: dim.minY + -0.04892 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.85324 * dim.width, y: dim.minY + 0.85324 * dim.height), controlPoint1: CGPoint(x: dim.minX + 1.04892 * dim.width, y: dim.minY + 0.34140 * dim.height), controlPoint2: CGPoint(x: dim.minX + 1.04892 * dim.width, y: dim.minY + 0.65860 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.14676 * dim.width, y: dim.minY + 0.85324 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.65860 * dim.width, y: dim.minY + 1.04892 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.34140 * dim.width, y: dim.minY + 1.04892 * dim.height))
+        bezier18Path.close()
+        bezier18Path.move(to: CGPoint(x: dim.minX + 0.88414 * dim.width, y: dim.minY + 0.50000 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.83883 * dim.width, y: dim.minY + 0.39186 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.88414 * dim.width, y: dim.minY + 0.46087 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.86869 * dim.width, y: dim.minY + 0.42173 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.72760 * dim.width, y: dim.minY + 0.34758 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.80793 * dim.width, y: dim.minY + 0.36097 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.76777 * dim.width, y: dim.minY + 0.34655 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.14882 * dim.width, y: dim.minY + 0.46704 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.62255 * dim.width, y: dim.minY + 0.34964 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.44130 * dim.width, y: dim.minY + 0.46704 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.11586 * dim.width, y: dim.minY + 0.50000 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.13131 * dim.width, y: dim.minY + 0.46704 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.11586 * dim.width, y: dim.minY + 0.48146 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.14882 * dim.width, y: dim.minY + 0.53296 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.11586 * dim.width, y: dim.minY + 0.51854 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.13131 * dim.width, y: dim.minY + 0.53296 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.72760 * dim.width, y: dim.minY + 0.65242 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.44130 * dim.width, y: dim.minY + 0.53296 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.62255 * dim.width, y: dim.minY + 0.65036 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.83883 * dim.width, y: dim.minY + 0.60814 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.76777 * dim.width, y: dim.minY + 0.65345 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.80793 * dim.width, y: dim.minY + 0.63903 * dim.height))
+        bezier18Path.addCurve(to: CGPoint(x: dim.minX + 0.88414 * dim.width, y: dim.minY + 0.50000 * dim.height), controlPoint1: CGPoint(x: dim.minX + 0.86869 * dim.width, y: dim.minY + 0.57827 * dim.height), controlPoint2: CGPoint(x: dim.minX + 0.88414 * dim.width, y: dim.minY + 0.53913 * dim.height))
+        bezier18Path.close()
+        bezier18Path.usesEvenOddFillRule = true
+        fillColor.setFill()
+        bezier18Path.fill()
+    }
+
 }
